@@ -76,6 +76,11 @@ jobs:
     runs-on: windows-latest
     needs: [build]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 0
+
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
