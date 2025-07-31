@@ -48,7 +48,8 @@ jobs:
       - name: Running Unit Tests
         run: |
           cd book.network
-          ./mvnw clean test
+          ./mvnw -X clean test
+
   build:
     runs-on: windows-latest
     name: Build backend
