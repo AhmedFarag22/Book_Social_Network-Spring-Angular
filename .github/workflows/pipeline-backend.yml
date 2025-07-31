@@ -48,6 +48,9 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Give execute permission to mvnw
+        run: chmod +x ./book.network/mvnw
+
       - name: Running Unit Tests
         run: |
           cd book.network
@@ -69,6 +72,9 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Give execute permission to mvnw
+        run: chmod +x ./book.network/mvnw
+
       - name: Build project
         run: |
           cd book.network
@@ -87,6 +93,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'corretto'
+
+      - name: Give execute permission to mvnw
+        run: chmod +x ./book.network/mvnw
 
       - name: Extract project version
         id: extract_version
