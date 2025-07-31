@@ -10,7 +10,7 @@ RUN mvn clean package -DskipTests
 # Runtime stage
 FROM amazoncorretto:21
 ARG PROFILE=dev
-ARG APP_VERSION=0.0.1-SNAPSHOT
+ARG APP_VERSION=0.0.3-SNAPSHOT
 
 WORKDIR /app
 
@@ -25,7 +25,14 @@ ENV EMAIL_HOSTNAME=smtp.gmail.com
 ENV EMAIL_USER_NAME=farag0336@gmail.com
 ENV EMAIL_PASSWORD=llaygylypsxkpufp
 
-CMD java -jar -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} book.network-${APP_VERSION}.jar
+CMD ["java",
+     "-Dspring.profiles.active=${ACTIVE_PROFILE}",
+     "-Dspring.datasource.url=${DB_URL}",
+     "-Dspring.mail.host=${EMAIL_HOSTNAME}",
+     "-Dspring.mail.username=${EMAIL_USER_NAME}",
+     "-Dspring.mail.password=${EMAIL_PASSWORD}",
+     "-jar", "book.network-${APP_VERSION}.jar"]
+
 
 
 
