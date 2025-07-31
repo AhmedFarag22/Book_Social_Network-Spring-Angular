@@ -48,7 +48,7 @@ jobs:
       - name: Running Unit Tests
         run: |
           cd book.network
-          ./mvn compile -Dspring.profiles.active=test
+          ./mvnw compile -Dspring.profiles.active=test
 
   build:
     runs-on: windows-latest
