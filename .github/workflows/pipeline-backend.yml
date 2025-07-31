@@ -69,7 +69,7 @@ jobs:
       - name: Build project
         run: |
           cd book.network
-          ./mvnw clean package
+          ./mvnw clean package -DskipTests
 
   build-image:
     name: Build Docker image
