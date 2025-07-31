@@ -48,7 +48,8 @@ jobs:
       - name: Running Unit Tests
         run: |
           cd book.network
-          ./mvnw clean test -Dspring.profiles.active=test
+          mvn compile -Dspring.profiles.active=test
+
   build:
     runs-on: windows-latest
     name: Build backend
