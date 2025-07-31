@@ -12,7 +12,7 @@ on:
 
 jobs:
   compile:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Compile project
     steps:
       - name: Checkout code
@@ -27,9 +27,8 @@ jobs:
           distribution: 'corretto'
 
       - name: Compile project
-        run: |
-          cd book.network
-          ./mvnw compile
+        run: mvn clean compile --file book.network/pom.xml
+
   unit-tests:
     runs-on: ubuntu-latest
     name: Unit tests
