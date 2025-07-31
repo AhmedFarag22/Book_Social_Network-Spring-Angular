@@ -125,6 +125,11 @@ jobs:
         run: |
               echo "Tags: ${{ secrets.DOCKERHUB_USERNAME }}/bsn-api:${{ steps.extract_version.outputs.VERSION }},${{ secrets.DOCKERHUB_USERNAME }}/bsn-api:latest"
 
+      - name: Debug username
+        run:
+          echo "DockerHub Username: ${{ secrets.DOCKERHUB_USERNAME }}"
+
+
       - name: Build & Push to DockerHub
         uses: docker/build-push-action@v5
         with:
