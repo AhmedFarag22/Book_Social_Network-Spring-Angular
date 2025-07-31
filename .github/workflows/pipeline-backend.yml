@@ -26,6 +26,9 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: Give execute permission to mvnw
+      - run: chmod +x ./mvnw
+         
       - name: Compile project
         run: |
           cd book.network
