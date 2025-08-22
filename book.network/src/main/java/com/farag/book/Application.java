@@ -22,32 +22,32 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner runner(RoleRepository roleRepository, BookRepository bookRepository, UserRepository userRepository) {
-		return args -> {
-			if (roleRepository.findByName("USER").isEmpty()) {
-				roleRepository.save(
-						Role.builder().name("USER").build()
-				);
-			}
-
-			if (bookRepository.findById(2).isEmpty()) {
-				User owner = userRepository.findById(2)
-						.orElseThrow(() -> new RuntimeException("User not found"));
-
-				Book book = Book.builder()
-						.title("Clean Code")
-						.authorName("Robert C. Martin")
-						.isbn("9780132350884")
-						.synopsis("A Handbook of Agile Software Craftsmanship.")
-						.bookCover("")
-						.archived(false)
-						.shareable(true)
-						.owner(owner)
-						.build();
-
-				bookRepository.save(book);
-			}
-		};
-	}
+//	@Bean
+//	public CommandLineRunner runner(RoleRepository roleRepository, BookRepository bookRepository, UserRepository userRepository) {
+//		return args -> {
+//			if (roleRepository.findByName("USER").isEmpty()) {
+//				roleRepository.save(
+//						Role.builder().name("USER").build()
+//				);
+//			}
+//
+//			if (bookRepository.findById(2).isEmpty()) {
+//				User owner = userRepository.findById(2)
+//						.orElseThrow(() -> new RuntimeException("User not found"));
+//
+//				Book book = Book.builder()
+//						.title("Clean Code")
+//						.authorName("Robert C. Martin")
+//						.isbn("9780132350884")
+//						.synopsis("A Handbook of Agile Software Craftsmanship.")
+//						.bookCover("")
+//						.archived(false)
+//						.shareable(true)
+//						.owner(owner)
+//						.build();
+//
+//				bookRepository.save(book);
+//			}
+//		};
+//	}
 }

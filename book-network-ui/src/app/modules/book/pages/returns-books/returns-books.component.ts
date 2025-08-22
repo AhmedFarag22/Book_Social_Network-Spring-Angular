@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BorrowedBookResponse, PageResponseBorrowedBookResponse } from '../../../../services/models';
 import { BookService } from '../../../../services/services';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-returns-books',
   imports: [CommonModule, FormsModule],
@@ -18,6 +19,7 @@ export class ReturnsBooksComponent implements OnInit {
     level: string = 'success';
     constructor(
       private bookService: BookService,
+      private toastrService: ToastrService
 
     ) {
 
@@ -78,8 +80,7 @@ export class ReturnsBooksComponent implements OnInit {
         'book-id': book.id as number
       }).subscribe({
         next: ():void => {
-          this.level = 'success';
-          this.message = 'Book return approved';
+          this.toastrService.success('Book return approved', "Done!");
           this.findAllReturnedBooks();
         }
       });

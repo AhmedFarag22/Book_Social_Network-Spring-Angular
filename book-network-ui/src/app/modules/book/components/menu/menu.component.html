@@ -38,12 +38,33 @@
         </li>
       </ul>
       <form class="d-flex gap-2 align-items-center" role="search">
-        <input class="form-control" type="text" placeholder="Find a book" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-        <span>Welcome</span>
-        <span class="text-capitalize fw-bold">Farag</span>
-        <button class="btn btn-link" type="button" (click)="logout()"><i class="fas fa-door-open"></i></button>
-      </form>
+  <div class="dropdown cursor-pointer" (click)="unreadNotificationCount = 0">
+    <i class="fas fa-bell position-relative h4" data-bs-toggle="dropdown" aria-expanded="false">
+
+      <!-- Badge -->
+      <span *ngIf="unreadNotificationCount > 0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ unreadNotificationCount }}
+        <span class="visually-hidden">unread notifications</span>
+      </span>
+    </i>
+
+    <ul class="dropdown-menu">
+      <li *ngFor="let notification of notifications">
+        <span class="dropdown-item cursor-pointer border-bottom">
+          <i class="fas fa-bell"></i>&nbsp; {{notification.bookTitle}} : {{notification.message}}
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <input class="form-control" type="text" placeholder="Find a book" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+  <span>Welcome</span>
+  <span class="text-capitalize fw-bold">{{ firstName || 'User' }}</span>
+  <button class="btn btn-link" type="button" (click)="logout()"><i class="fas fa-door-open"></i></button>
+</form>
+
     </div>
   </div>
 </nav>

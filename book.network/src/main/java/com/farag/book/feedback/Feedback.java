@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class Feedback extends BaseEntity {
-//
+
     private Double note;
 
     private String comment;
