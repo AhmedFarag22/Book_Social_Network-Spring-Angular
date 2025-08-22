@@ -81,3 +81,11 @@ By following this project, students will learn:
 - Dockerizing the infrastructure
 - CI/CD pipeline & deployment
 
+
+
+👨‍💻 Author
+
+Ahmed Farag 📧 farag0336@gmail.com
+
+💻 Passionate about Java & Spring Boot Development
+LinkedIn: https://www.linkedin.com/in/ahmed-farag-93a74324a/
