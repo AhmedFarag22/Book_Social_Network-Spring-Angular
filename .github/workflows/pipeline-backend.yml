@@ -141,26 +141,27 @@ jobs:
 
   deploy:
     name: Deploy Backend
-    runs-on: self-hosted
-    needs: [build-image]
+    runs-on: ubuntu-latest
     steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
 
-      - name: Create deployment folder
-        run: ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} "mkdir -p ci-cd"
+        - name: Copy docker-compose file to EC2
+          run: |
+            echo "${{ secrets.VPS_KEY }}" > key.pem
+            chmod 600 key.pem
+            scp -i key.pem docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:~/ci-cd/docker-compose.yml
 
-      - name: Copy docker-compose file
-        run: scp docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:ci-cd/docker-compose.yml
-
-      - name: Set ENV variable and deploy
-        run: |
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} <<EOF
-          export EMAIL_HOST_NAME=${{ secrets.EMAIL_HOST_NAME }}
-          export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
-          export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-          cd ci-cd
-          docker-compose -f docker-compose.yml pull -q
-          docker-compose -f docker-compose.yml up -d
-          EOF
+            - name: Deploy on EC2
+            run: |
+              ssh -i key.pem ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }} << EOF
+              export EMAIL_HOST_NAME=${{ secrets.EMAIL_HOST_NAME }}
+              export EMAIL_USER_NAME=${{ secrets.EMAIL_USER_NAME }}
+              export EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+              cd ~/ci-cd
+              docker-compose pull
+              docker-compose up -d
+              EOF
 
 
 #  health-check:
