@@ -151,7 +151,7 @@ jobs:
           chmod 600 key.pem
 
       - name: Copy docker-compose file to EC2
-        run: scp -i key.pem docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:~/ci-cd/docker-compose.yml
+        run: scp -i key.pem book.network/docker-compose.yml ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_IP }}:~/ci-cd/docker-compose.yml
 
       - name: Deploy on EC2
         run: |
