@@ -18,7 +18,8 @@
    ></app-book-card>
 </div>
 
-<div class="d-flex justify-content-center mt-3">
+<div *ngIf="bookResponse.content">
+  <div class="d-flex justify-content-center mt-3">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item">
@@ -85,3 +86,5 @@
     </ul>
   </nav>
 </div>
+</div>
+

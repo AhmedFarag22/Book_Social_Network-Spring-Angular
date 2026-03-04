@@ -53,3 +53,4 @@ import io.swagger.v3.oas.annotations.servers.Server;
 )
 public class OpenApiConfig {
 }
+// http://localhost:8088/api/v1/v3/api-docs

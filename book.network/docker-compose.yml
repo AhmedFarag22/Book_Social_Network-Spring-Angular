@@ -3,8 +3,8 @@ services:
     container_name: postgres-sql-bsn
     image: postgres
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: A7med
       PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: book_social_network
     volumes:
@@ -31,10 +31,15 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_IMPORT: /opt/keycloak/data/import/book-social-network.json
+    volumes:
+      - ./keycloak/realm:/opt/keycloak/data/import
+
     networks:
       - spring-demo
     command:
-      - "start-dev"
+      - start-dev
+      - --import-realm
 
   bsn-api:
     container_name: bsn-api
